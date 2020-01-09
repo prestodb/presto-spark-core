@@ -10,7 +10,7 @@
 
     <groupId>com.facebook.presto.spark</groupId>
     <artifactId>spark-core</artifactId>
-    <version>2.0.2-5-SNAPSHOT</version>
+    <version>2.0.2-5</version>
 
     <name>spark-core</name>
     <description>Shaded version of Apache Spark 2.x.x for Presto</description>
@@ -34,7 +34,7 @@
         <connection>scm:git:git://github.com/prestodb/presto-spark-core.git</connection>
         <developerConnection>scm:git:git://github.com/prestodb/presto-spark-core.git</developerConnection>
         <url>https://github.com/prestodb/presto-spark-core</url>
-        <tag>HEAD</tag>
+        <tag>2.0.2-5</tag>
     </scm>
 
     <properties>
