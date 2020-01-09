@@ -362,10 +362,6 @@
                                     <shadedPattern>${shadeBase}.org.objenesis</shadedPattern>
                                 </relocation>
                                 <relocation>
-                                    <pattern>com.esotericsoftware</pattern>
-                                    <shadedPattern>${shadeBase}.com.esotericsoftware</shadedPattern>
-                                </relocation>
-                                <relocation>
                                     <pattern>com.codahale.metrics</pattern>
                                     <shadedPattern>${shadeBase}.com.codahale.metrics</shadedPattern>
                                 </relocation>
