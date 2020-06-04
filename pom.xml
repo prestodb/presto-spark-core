@@ -153,12 +153,6 @@
                     <artifactId>stream</artifactId>
                 </exclusion>
 
-                <!-- Compressed bitmaps -->
-                <exclusion>
-                    <groupId>org.roaringbitmap</groupId>
-                    <artifactId>RoaringBitmap</artifactId>
-                </exclusion>
-
                 <!-- Logging -->
                 <exclusion>
                     <groupId>org.slf4j</groupId>
