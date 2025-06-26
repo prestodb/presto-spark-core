@@ -10,10 +10,10 @@
 
     <groupId>com.facebook.presto.spark</groupId>
     <artifactId>spark-core</artifactId>
-    <version>3.4.0-1-SNAPSHOT</version>
+    <version>3.4.1-1-SNAPSHOT</version>
 
     <name>spark-core</name>
-    <description>Shaded version of Apache Spark 3.4.0 for Presto</description>
+    <description>Shaded version of Apache Spark 3.4.1 for Presto</description>
     <url>https://github.com/prestodb/presto-spark-core</url>
 
     <inceptionYear>2019</inceptionYear>
@@ -43,15 +43,15 @@
 
         <shadeBase>com.facebook.presto.spark.\$internal</shadeBase>
 
-        <dep.slf4j.version>1.7.36</dep.slf4j.version>
+        <dep.slf4j.version>2.0.6</dep.slf4j.version>
     </properties>
 
     <dependencies>
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.12</artifactId>
-            <version>3.4.0</version>
+            <artifactId>spark-core_2.13</artifactId>
+            <version>3.4.1</version>
             <exclusions>
                 <!-- Hadoop -->
                 <exclusion>
@@ -98,7 +98,7 @@
                 <!-- Scalatest -->
                 <exclusion>
                     <groupId>org.scalatest</groupId>
-                    <artifactId>scalatest_2.11</artifactId>
+                    <artifactId>scalatest_2.13</artifactId>
                 </exclusion>
 
                 <!-- Findbugs -->
@@ -167,7 +167,40 @@
                     <artifactId>jul-to-slf4j</artifactId>
                 </exclusion>
 
-                <!-- Spark 3.4.0 specific exclusions -->
+                <!-- io.airlift -->
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>configuration</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>aircompressor</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>json</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>log</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>slice</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>stats</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>units</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>concurrent</artifactId>
+                </exclusion>
+                <!-- Spark 3.4.1 specific exclusions -->
                 
                 <!-- Kubernetes integration -->
                 <exclusion>
@@ -192,19 +225,19 @@
                 <!-- Delta Lake integration -->
                 <exclusion>
                     <groupId>io.delta</groupId>
-                    <artifactId>delta-core_2.12</artifactId>
+                    <artifactId>delta-core_2.13</artifactId>
                 </exclusion>
                 
                 <!-- Iceberg integration -->
                 <exclusion>
                     <groupId>org.apache.iceberg</groupId>
-                    <artifactId>iceberg-spark-runtime-3.4_2.12</artifactId>
+                    <artifactId>iceberg-spark-runtime-3.4_2.13</artifactId>
                 </exclusion>
                 
                 <!-- Hudi integration -->
                 <exclusion>
                     <groupId>org.apache.hudi</groupId>
-                    <artifactId>hudi-spark3.4-bundle_2.12</artifactId>
+                    <artifactId>hudi-spark3.4-bundle_2.13</artifactId>
                 </exclusion>
                 
                 <!-- Enhanced security -->
@@ -271,7 +304,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.2</version>
+                <version>3.4.1</version>
                 <executions>
                     <execution>
                         <id>default</id>
@@ -311,7 +344,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.10.1</version>
                 <configuration>
                     <source>${project.build.targetJdk}</source>
                     <target>${project.build.targetJdk}</target>
@@ -322,7 +355,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.2.2</version>
                 <executions>
                     <execution>
                         <goals>
@@ -341,13 +374,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12.4</version>
+                <version>3.0.0-M7</version>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -364,7 +397,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>3.4.1</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
