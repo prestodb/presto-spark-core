@@ -10,10 +10,10 @@
 
     <groupId>com.facebook.presto.spark</groupId>
     <artifactId>spark-core</artifactId>
-    <version>2.0.2-7-SNAPSHOT</version>
+    <version>3.4.1-2-SNAPSHOT</version>
 
     <name>spark-core</name>
-    <description>Shaded version of Apache Spark 2.x.x for Presto</description>
+    <description>Shaded version of Apache Spark 3.4.1 for Presto</description>
     <url>https://github.com/prestodb/presto-spark-core</url>
 
     <inceptionYear>2019</inceptionYear>
@@ -43,15 +43,15 @@
 
         <shadeBase>com.facebook.presto.spark.\$internal</shadeBase>
 
-        <dep.slf4j.version>1.7.16</dep.slf4j.version>
+        <dep.slf4j.version>2.0.6</dep.slf4j.version>
     </properties>
 
     <dependencies>
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
-            <version>2.4.4</version>
+            <artifactId>spark-core_2.13</artifactId>
+            <version>3.4.1</version>
             <exclusions>
                 <!-- Hadoop -->
                 <exclusion>
@@ -98,7 +98,7 @@
                 <!-- Scalatest -->
                 <exclusion>
                     <groupId>org.scalatest</groupId>
-                    <artifactId>scalatest_2.11</artifactId>
+                    <artifactId>scalatest_2.13</artifactId>
                 </exclusion>
 
                 <!-- Findbugs -->
@@ -166,6 +166,99 @@
                     <groupId>org.slf4j</groupId>
                     <artifactId>jul-to-slf4j</artifactId>
                 </exclusion>
+
+                <!-- io.airlift -->
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>configuration</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>aircompressor</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>json</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>log</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>slice</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>stats</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>units</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>concurrent</artifactId>
+                </exclusion>
+                <!-- Spark 3.4.1 specific exclusions -->
+
+                <!-- Kubernetes integration -->
+                <exclusion>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>kubernetes-client</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>kubernetes-model-core</artifactId>
+                </exclusion>
+
+                <!-- Arrow integration -->
+                <exclusion>
+                    <groupId>org.apache.arrow</groupId>
+                    <artifactId>arrow-vector</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.arrow</groupId>
+                    <artifactId>arrow-memory</artifactId>
+                </exclusion>
+
+                <!-- Delta Lake integration -->
+                <exclusion>
+                    <groupId>io.delta</groupId>
+                    <artifactId>delta-core_2.13</artifactId>
+                </exclusion>
+
+                <!-- Iceberg integration -->
+                <exclusion>
+                    <groupId>org.apache.iceberg</groupId>
+                    <artifactId>iceberg-spark-runtime-3.4_2.13</artifactId>
+                </exclusion>
+
+                <!-- Hudi integration -->
+                <exclusion>
+                    <groupId>org.apache.hudi</groupId>
+                    <artifactId>hudi-spark3.4-bundle_2.13</artifactId>
+                </exclusion>
+
+                <!-- Enhanced security -->
+                <exclusion>
+                    <groupId>org.apache.kerby</groupId>
+                    <artifactId>kerb-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.kerby</groupId>
+                    <artifactId>kerb-client</artifactId>
+                </exclusion>
+
+                <!-- Enhanced metrics -->
+                <exclusion>
+                    <groupId>io.prometheus</groupId>
+                    <artifactId>simpleclient</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.prometheus</groupId>
+                    <artifactId>simpleclient_dropwizard</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
 
@@ -211,7 +304,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.2</version>
+                <version>3.4.1</version>
                 <executions>
                     <execution>
                         <id>default</id>
@@ -251,7 +344,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.10.1</version>
                 <configuration>
                     <source>${project.build.targetJdk}</source>
                     <target>${project.build.targetJdk}</target>
@@ -262,7 +355,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.2.2</version>
                 <executions>
                     <execution>
                         <goals>
@@ -281,13 +374,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12.4</version>
+                <version>3.0.0-M7</version>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -304,7 +397,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>3.4.1</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -366,6 +459,24 @@
                                 <relocation>
                                     <pattern>org.apache.xbean</pattern>
                                     <shadedPattern>${shadeBase}.org.apache.xbean</shadedPattern>
+                                </relocation>
+
+                                <!-- Spark 3.4.1 specific relocations -->
+                                <relocation>
+                                    <pattern>org.apache.arrow</pattern>
+                                    <shadedPattern>${shadeBase}.org.apache.arrow</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>io.fabric8</pattern>
+                                    <shadedPattern>${shadeBase}.io.fabric8</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>io.prometheus</pattern>
+                                    <shadedPattern>${shadeBase}.io.prometheus</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.apache.kerby</pattern>
+                                    <shadedPattern>${shadeBase}.org.apache.kerby</shadedPattern>
                                 </relocation>
                             </relocations>
                             <filters>
