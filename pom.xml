@@ -27,7 +27,11 @@
     </licenses>
 
     <developers>
-        <!-- see original projects for developer information -->
+        <!-- see git log -->
+        <developer>
+            <name>Presto Community</name>
+            <email>main@lists.prestodb.io</email>
+        </developer>
     </developers>
 
     <scm>
